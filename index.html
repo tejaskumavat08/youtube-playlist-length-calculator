@@ -1,0 +1,781 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <meta content="Calculate total duration of any YouTube playlist. Get accurate time estimates for 1x, 1.25x, 1.5x, 1.75x, and 2x playback speeds. Perfect for students, content creators, and music lovers." name="description"></meta>
+    <meta content="YouTube playlist duration calculator, playlist time calculator, YouTube speed calculator, video duration tool, YouTube time saver, playlist length checker" name="keywords"></meta>
+    <title>YouTube Playlist Duration Calculator | Calculate Playlist Time at Different Speeds</title>
+    <style>
+        :root {
+            --primary: #ff0000;
+            --primary-dark: #cc0000;
+            --secondary: #282828;
+            --light: #f9f9f9;
+            --dark: #222222;
+            --gray: #606060;
+            --light-gray: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 15px 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 20px 15px;
+            display: block;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 15px;
+            color: var(--dark);
+        }
+        
+        /* Main Content Styles */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+   
+        .header-tagline {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+        
+        .subsection-title {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        
+        .info-text {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .calc-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .input-container {
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .url-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+        }
+        
+        .speed-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .speed-btn {
+            background-color: var(--light-gray);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .speed-btn:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .speed-btn-active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .calc-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .calc-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calc-button-disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+            font-size: 1.1rem;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label-text {
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        .result-value-text {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .instructions-section, .faq-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .faq-item-container {
+            margin-bottom: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question-row {
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question-row:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .faq-answer-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-answer-visible {
+            padding: 15px 20px;
+            max-height: 500px;
+        }
+        
+        .error-container {
+            color: #d32f2f;
+            background-color: #fde8e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .page-footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: white;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-link {
+                padding: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .calc-container, .instructions-section, .faq-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 15px;
+            }
+            
+            .speed-selector {
+                justify-content: center;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body style="background:white;">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">YouTube Playlist Calculator</a>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">☰</button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/privacy-policy" class="nav-link">Privacy Policy</a></li>
+                <li class="nav-item"><a href="/terms-and-conditions" class="nav-link">Terms</a></li>
+                <li class="nav-item"><a href="/contact-us" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="/disclaimer" class="nav-link">Disclaimer</a></li>
+                <li class="nav-item"><a href="/sitemap" class="nav-link">Sitemap</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+    <div class="main-container">
+        <header class="page-header">
+            <h2 class="section-title">YouTube Playlist Duration Calculator</h2>
+          
+           
+          
+            <p class="header-tagline">Calculate the exact time needed to watch any YouTube playlist at different playback speeds</p>
+        </header>
+        
+        <section class="calc-container">
+            <h2 class="section-title">Playlist Time Calculator</h2>
+            <div class="input-container">
+                <label class="input-label" for="playlist-url-input">YouTube Playlist URL:</label>
+                <input class="url-input" id="playlist-url-input" placeholder="Paste YouTube playlist link here (e.g., https://www.youtube.com/playlist?list=PL...)" type="text" />
+            </div>
+            
+            <div class="input-container">
+                <label class="input-label">Playback Speed:</label>
+                <div class="speed-selector">
+                    <div class="speed-btn speed-btn-active" data-speed="1">1x (Normal)</div>
+                    <div class="speed-btn" data-speed="1.25">1.25x</div>
+                    <div class="speed-btn" data-speed="1.5">1.5x</div>
+                    <div class="speed-btn" data-speed="1.75">1.75x</div>
+                    <div class="speed-btn" data-speed="2">2x</div>
+                </div>
+            </div>
+            
+            <button class="calc-button" id="calculate-button">Calculate Duration</button>
+            
+            <div class="error-container" id="error-message-box"></div>
+            
+            <div class="result-container" id="results-box">
+                <h3 class="subsection-title">Playlist Duration Results</h3>
+                <div class="result-row">
+                    <span class="result-label-text">Original Duration:</span>
+                    <span class="result-value-text" id="original-time">-</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label-text">At Selected Speed (<span id="current-speed-text">1x</span>):</span>
+                    <span class="result-value-text" id="adjusted-time">-</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label-text">Time Saved:</span>
+                    <span class="result-value-text" id="saved-time">-</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label-text">Number of Videos:</span>
+                    <span class="result-value-text" id="total-videos">-</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="instructions-section">
+            <h2 class="section-title">How to Use This YouTube Playlist Time Calculator</h2>
+            <p class="info-text">Our YouTube playlist duration calculator helps you determine exactly how long it will take to watch an entire playlist at different playback speeds. Here's how to use it:</p>
+            
+            <h3 class="subsection-title">Step 1: Find Your YouTube Playlist</h3>
+            <p class="info-text">Go to YouTube and navigate to the playlist you want to calculate. Copy the URL from your browser's address bar. The URL should contain "playlist?list=" followed by a series of letters and numbers.</p>
+            
+            <h3 class="subsection-title">Step 2: Paste the Playlist URL</h3>
+            <p class="info-text">Paste the copied URL into the input field above labeled "YouTube Playlist URL". Our tool will automatically verify if it's a valid YouTube playlist link.</p>
+            
+            <h3 class="subsection-title">Step 3: Select Playback Speed</h3>
+            <p class="info-text">Choose your desired playback speed from the options (1x normal speed up to 2x speed). The calculator will show you how much time you'll save at faster speeds.</p>
+            
+            <h3 class="subsection-title">Step 4: View Results</h3>
+            <p class="info-text">Click "Calculate Duration" to see the total playlist time at normal speed and your selected speed, plus how much time you'll save by watching faster.</p>
+        </section>
+        
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item-container">
+                <div class="faq-question-row">
+                    <span>Does this tool work with private or unlisted playlists?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </div>
+                <div class="faq-answer-content">
+                    <p class="info-text">No, our calculator can only access public YouTube playlists. Private or unlisted playlists require authentication that we don't support.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item-container">
+                <div class="faq-question-row">
+                    <span>How accurate are the time calculations?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </div>
+                <div class="faq-answer-content">
+                    <p class="info-text">Our calculations are based on YouTube's API data and are typically very accurate. However, actual playback times may vary slightly due to internet speed or buffering.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item-container">
+                <div class="faq-question-row">
+                    <span>Can I calculate the duration of a channel's entire video collection?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </div>
+                <div class="faq-answer-content">
+                    <p class="info-text">This tool only works with specific playlists, not entire channels. You would need to create a playlist containing all the videos you want to calculate.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item-container">
+                <div class="faq-question-row">
+                    <span>Is there a limit to playlist size?</span>
+                    <span class="faq-toggle-icon">+</span>
+                </div>
+                <div class="faq-answer-content">
+                    <p class="info-text">Our tool can handle playlists with up to 500 videos. For larger playlists, consider breaking them into smaller segments.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="page-footer">
+            <p>© <span id="copyright-year"></span> YouTube Playlist Duration Calculator | This tool is not affiliated with YouTube or Google.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '☰';
+                });
+            });
+            
+            // YouTube API key
+            const API_KEY = 'AIzaSyCttW3t1zBe3H8U8D-SBVfLz1CxumMe1mg';
+            
+            // Speed selection
+            const speedButtons = document.querySelectorAll('.speed-btn');
+            let currentSpeed = 1;
+            
+            speedButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    speedButtons.forEach(btn => btn.classList.remove('speed-btn-active'));
+                    this.classList.add('speed-btn-active');
+                    currentSpeed = parseFloat(this.dataset.speed);
+                    document.getElementById('current-speed-text').textContent = currentSpeed + 'x';
+                    
+                    // Recalculate if we already have results
+                    if (document.getElementById('results-box').style.display === 'block') {
+                        updateSpeedResults();
+                    }
+                });
+            });
+            
+            // FAQ toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question-row');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.faq-toggle-icon');
+                    
+                    answer.classList.toggle('faq-answer-visible');
+                    icon.textContent = answer.classList.contains('faq-answer-visible') ? '−' : '+';
+                });
+            });
+            
+            // Calculate button
+            document.getElementById('calculate-button').addEventListener('click', processPlaylist);
+            
+            async function processPlaylist() {
+                const playlistUrl = document.getElementById('playlist-url-input').value.trim();
+                
+                if (!playlistUrl) {
+                    showErrorMessage('Please enter a YouTube playlist URL');
+                    return;
+                }
+                
+                // Validate URL format
+                const playlistId = getPlaylistId(playlistUrl);
+                if (!playlistId) {
+                    showErrorMessage('Please enter a valid YouTube playlist URL');
+                    return;
+                }
+                
+                // Show loading state
+                const btn = document.getElementById('calculate-button');
+                btn.textContent = 'Calculating...';
+                btn.disabled = true;
+                btn.classList.add('calc-button-disabled');
+                hideErrorMessage();
+                
+                try {
+                    // First get playlist details to find video count
+                    const playlistInfo = await getPlaylistInfo(playlistId);
+                    const videoCount = playlistInfo.items[0].contentDetails.itemCount;
+                    
+                    // Then get all playlist items with their durations
+                    const playlistVideos = await getAllPlaylistVideos(playlistId);
+                    
+                    // Calculate total duration
+                    const totalSeconds = getTotalDuration(playlistVideos);
+                    
+                    // Display results
+                    showResults(totalSeconds, videoCount);
+                } catch (error) {
+                    console.error('Error:', error);
+                    showErrorMessage('Failed to calculate playlist duration. Please check the URL and try again.');
+                } finally {
+                    // Reset button
+                    btn.textContent = 'Calculate Duration';
+                    btn.disabled = false;
+                    btn.classList.remove('calc-button-disabled');
+                }
+            }
+            
+            async function getPlaylistInfo(playlistId) {
+                const url = `https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=${playlistId}&key=${API_KEY}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch playlist details');
+                }
+                return await response.json();
+            }
+            
+            async function getAllPlaylistVideos(playlistId) {
+                let allVideos = [];
+                let nextPageToken = '';
+                
+                do {
+                    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&playlistId=${playlistId}&maxResults=50&key=${API_KEY}&pageToken=${nextPageToken}`;
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch playlist items');
+                    }
+                    const data = await response.json();
+                    allVideos = allVideos.concat(data.items);
+                    nextPageToken = data.nextPageToken || '';
+                } while (nextPageToken);
+                
+                // Now fetch video durations for each item
+                const videoIds = allVideos.map(item => item.contentDetails.videoId);
+                const videoDetails = await getVideoDurations(videoIds);
+                
+                return videoDetails;
+            }
+            
+            async function getVideoDurations(videoIds) {
+                // YouTube API allows max 50 videos per request
+                const chunks = [];
+                for (let i = 0; i < videoIds.length; i += 50) {
+                    chunks.push(videoIds.slice(i, i + 50));
+                }
+                
+                const allDurations = [];
+                for (const chunk of chunks) {
+                    const url = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${chunk.join(',')}&key=${API_KEY}`;
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch video durations');
+                    }
+                    const data = await response.json();
+                    allDurations.push(...data.items);
+                }
+                
+                return allDurations;
+            }
+            
+            function getTotalDuration(videos) {
+                let totalSeconds = 0;
+                
+                videos.forEach(video => {
+                    const duration = video.contentDetails.duration;
+                    totalSeconds += convertDurationToSeconds(duration);
+                });
+                
+                return totalSeconds;
+            }
+            
+            function convertDurationToSeconds(duration) {
+                // Parse ISO 8601 duration format (e.g., PT1H5M30S)
+                const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+                
+                const hours = match[1] ? parseInt(match[1]) : 0;
+                const minutes = match[2] ? parseInt(match[2]) : 0;
+                const seconds = match[3] ? parseInt(match[3]) : 0;
+                
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+            
+            function getPlaylistId(url) {
+                // Simple validation - in a real app you'd want more robust validation
+                const regex = /[&?]list=([^&]+)/;
+                const match = url.match(regex);
+                return match ? match[1] : null;
+            }
+            
+            function showResults(totalSeconds, videoCount) {
+                const originalDuration = formatDuration(totalSeconds);
+                document.getElementById('original-time').textContent = originalDuration;
+                document.getElementById('total-videos').textContent = videoCount;
+                
+                updateSpeedResults(totalSeconds);
+                
+                document.getElementById('results-box').style.display = 'block';
+            }
+            
+            function updateSpeedResults(totalSeconds) {
+                if (!totalSeconds) {
+                    // Get from original display if we're just changing speed
+                    const originalText = document.getElementById('original-time').textContent;
+                    if (originalText !== '-') {
+                        totalSeconds = parseFormattedTime(originalText);
+                    } else {
+                        return;
+                    }
+                }
+                
+                const speedDuration = totalSeconds / currentSpeed;
+                const timeSaved = totalSeconds - speedDuration;
+                
+                document.getElementById('adjusted-time').textContent = formatDuration(speedDuration);
+                document.getElementById('saved-time').textContent = formatDuration(timeSaved);
+            }
+            
+            function formatDuration(totalSeconds) {
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = Math.floor(totalSeconds % 60);
+                
+                let timeString = '';
+                if (hours > 0) timeString += `${hours} hr${hours !== 1 ? 's' : ''} `;
+                if (minutes > 0 || hours > 0) timeString += `${minutes} min${minutes !== 1 ? 's' : ''} `;
+                if (seconds > 0 || (hours === 0 && minutes === 0)) timeString += `${seconds} sec${seconds !== 1 ? 's' : ''}`;
+                
+                return timeString.trim();
+            }
+            
+            function parseFormattedTime(timeString) {
+                // Parse formatted time back to seconds
+                const parts = timeString.split(' ');
+                let seconds = 0;
+                
+                for (let i = 0; i < parts.length; i += 2) {
+                    const value = parseInt(parts[i]);
+                    const unit = parts[i+1];
+                    
+                    if (unit.startsWith('hr')) seconds += value * 3600;
+                    else if (unit.startsWith('min')) seconds += value * 60;
+                    else if (unit.startsWith('sec')) seconds += value;
+                }
+                
+                return seconds;
+            }
+            
+            function showErrorMessage(message) {
+                const errorElement = document.getElementById('error-message-box');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+            
+            function hideErrorMessage() {
+                document.getElementById('error-message-box').style.display = 'none';
+            }
+        });
+    </script>
+  
+  
+  <script type='text/javascript'>
+//<![CDATA[
+var uri = window.location.toString();
+if (uri.indexOf("%3D","%3D") > 0) {
+var clean_uri = uri.substring(0, uri.indexOf("%3D"));
+window.history.replaceState({}, document.title, clean_uri);
+}
+var uri = window.location.toString();
+if (uri.indexOf("%3D%3D","%3D%3D") > 0) {
+var clean_uri = uri.substring(0, uri.indexOf("%3D%3D"));
+window.history.replaceState({}, document.title, clean_uri);
+}
+var uri = window.location.toString();
+if (uri.indexOf("&m=1","&m=1") > 0) {
+var clean_uri = uri.substring(0, uri.indexOf("&m=1"));
+window.history.replaceState({}, document.title, clean_uri);
+}
+var uri = window.location.toString();
+if (uri.indexOf("?m=1","?m=1") > 0) {
+var clean_uri = uri.substring(0, uri.indexOf("?m=1"));
+window.history.replaceState({}, document.title, clean_uri);
+}
+//]]>
+</script>
+</body>
+</html>
