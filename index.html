@@ -1,27 +1,68 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ML0VKRKBSF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ML0VKRKBSF');
-</script>
-
-
-    <meta name="google-site-verification" content="yxvt_X9EVlDBHqwUc5uE_sHAZ1AQwkrCDaJaYoSXGOA" />
-
-
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate total duration of any YouTube playlist at different speeds (1x, 1.25x, 1.5x, 1.75x, 2x). Perfect for students, learners, and content creators to estimate watch time.">
+    <meta name="keywords" content="YouTube playlist calculator, playlist duration, YouTube watch time, video time calculator, YouTube speed calculator, playlist length, YouTube time saver">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="author" content="YouTube Playlist Calculator">
     
-    <meta charset="UTF-8"></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
-    <meta content="Calculate total duration of any YouTube playlist. Get accurate time estimates for 1x, 1.25x, 1.5x, 1.75x, and 2x playback speeds. Perfect for students, content creators, and music lovers." name="description"></meta>
-    <meta content="YouTube playlist duration calculator, playlist time calculator, YouTube speed calculator, video duration tool, YouTube time saver, playlist length checker" name="keywords"></meta>
-    <title>YouTube Playlist Length Calculator Extension 2025 | Calculate Playlist Time at Different Speeds</title>
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://youtubeplaylistcalculator.com/">
+    <meta property="og:title" content="YouTube Playlist Duration Calculator | Calculate Watch Time at Different Speeds">
+    <meta property="og:description" content="Instantly calculate how long any YouTube playlist will take to watch at normal or increased playback speeds (up to 2x).">
+    <meta property="og:image" content="https://youtubeplaylistcalculator.com/images/og-image.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://youtubeplaylistcalculator.com/">
+    <meta name="twitter:title" content="YouTube Playlist Duration Calculator | Calculate Watch Time at Different Speeds">
+    <meta name="twitter:description" content="Instantly calculate how long any YouTube playlist will take to watch at normal or increased playback speeds (up to 2x).">
+    <meta name="twitter:image" content="https://youtubeplaylistcalculator.com/images/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://youtubeplaylistcalculator.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube Playlist Duration Calculator",
+      "url": "https://youtubeplaylistcalculator.com/",
+      "description": "Calculate total duration of any YouTube playlist at different playback speeds (1x to 2x).",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <title>YouTube Playlist Duration Calculator | Calculate Watch Time at Different Speeds</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ML0VKRKBSF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ML0VKRKBSF');
+    </script>
+    
     <style>
         :root {
             --primary: #ff0000;
@@ -318,6 +359,19 @@
             font-size: 0.9rem;
         }
         
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 15px 0;
+            font-size: 0.9rem;
+        }
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .nav-menu {
@@ -376,56 +430,56 @@
         }
     </style>
 </head>
-<body style="background:white;">
+<body itemscope itemtype="https://schema.org/WebPage">
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar" itemscope itemtype="https://schema.org/SiteNavigationElement">
         <div class="nav-container">
-            <a href="/" class="logo">YouTube Playlist Calculator</a>
+            <a href="/" class="logo" itemprop="url">YouTube Playlist Calculator</a>
             
-            <button class="mobile-menu-btn" id="mobile-menu-toggle">☰</button>
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">☰</button>
             
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="/privacy-policy" class="nav-link">Privacy Policy</a></li>
-                <li class="nav-item"><a href="/terms-and-conditions" class="nav-link">Terms</a></li>
-                <li class="nav-item"><a href="/contact-us" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="/disclaimer" class="nav-link">Disclaimer</a></li>
-                <li class="nav-item"><a href="/sitemap" class="nav-link">Sitemap</a></li>
+                <li class="nav-item" itemprop="name"><a href="/" class="nav-link" itemprop="url">Home</a></li>
+                <li class="nav-item" itemprop="name"><a href="/about" class="nav-link" itemprop="url">About</a></li>
+                <li class="nav-item" itemprop="name"><a href="/privacy-policy" class="nav-link" itemprop="url">Privacy Policy</a></li>
+                <li class="nav-item" itemprop="name"><a href="/terms-and-conditions" class="nav-link" itemprop="url">Terms</a></li>
+                <li class="nav-item" itemprop="name"><a href="/contact-us" class="nav-link" itemprop="url">Contact</a></li>
             </ul>
         </div>
     </nav>
   
     <div class="main-container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="/">Home</a> &gt; <span>Playlist Duration Calculator</span>
+        </div>
+        
         <header class="page-header">
-            <h2 class="section-title">YouTube Playlist Duration Calculator</h2>
-          
-           
-          
-            <p class="header-tagline">Calculate the exact time needed to watch any YouTube playlist at different playback speeds</p>
+            <h1 class="section-title" itemprop="headline">YouTube Playlist Duration Calculator</h1>
+            <p class="header-tagline">Calculate the exact time needed to watch any YouTube playlist at different playback speeds (1x, 1.25x, 1.5x, 1.75x, 2x)</p>
         </header>
         
-        <section class="calc-container">
+        <section class="calc-container" itemscope itemtype="https://schema.org/WebApplication">
             <h2 class="section-title">Playlist Time Calculator</h2>
             <div class="input-container">
                 <label class="input-label" for="playlist-url-input">YouTube Playlist URL:</label>
-                <input class="url-input" id="playlist-url-input" placeholder="Paste YouTube playlist link here (e.g., https://www.youtube.com/playlist?list=PL...)" type="text" />
+                <input class="url-input" id="playlist-url-input" placeholder="Paste YouTube playlist link here (e.g., https://www.youtube.com/playlist?list=PL...)" type="text" aria-label="YouTube playlist URL input">
             </div>
             
             <div class="input-container">
                 <label class="input-label">Playback Speed:</label>
                 <div class="speed-selector">
-                    <div class="speed-btn speed-btn-active" data-speed="1">1x (Normal)</div>
-                    <div class="speed-btn" data-speed="1.25">1.25x</div>
-                    <div class="speed-btn" data-speed="1.5">1.5x</div>
-                    <div class="speed-btn" data-speed="1.75">1.75x</div>
-                    <div class="speed-btn" data-speed="2">2x</div>
+                    <div class="speed-btn speed-btn-active" data-speed="1" aria-label="Normal speed (1x)">1x (Normal)</div>
+                    <div class="speed-btn" data-speed="1.25" aria-label="1.25 times speed">1.25x</div>
+                    <div class="speed-btn" data-speed="1.5" aria-label="1.5 times speed">1.5x</div>
+                    <div class="speed-btn" data-speed="1.75" aria-label="1.75 times speed">1.75x</div>
+                    <div class="speed-btn" data-speed="2" aria-label="2 times speed">2x</div>
                 </div>
             </div>
             
-            <button class="calc-button" id="calculate-button">Calculate Duration</button>
+            <button class="calc-button" id="calculate-button" aria-label="Calculate playlist duration">Calculate Duration</button>
             
-            <div class="error-container" id="error-message-box"></div>
+            <div class="error-container" id="error-message-box" role="alert"></div>
             
             <div class="result-container" id="results-box">
                 <h3 class="subsection-title">Playlist Duration Results</h3>
@@ -465,52 +519,77 @@
             <p class="info-text">Click "Calculate Duration" to see the total playlist time at normal speed and your selected speed, plus how much time you'll save by watching faster.</p>
         </section>
         
-        <section class="faq-section">
+        <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
             <h2 class="section-title">Frequently Asked Questions</h2>
             
-            <div class="faq-item-container">
+            <div class="faq-item-container" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <div class="faq-question-row">
-                    <span>Does this tool work with private or unlisted playlists?</span>
+                    <span itemprop="name">Does this tool work with private or unlisted playlists?</span>
                     <span class="faq-toggle-icon">+</span>
                 </div>
-                <div class="faq-answer-content">
-                    <p class="info-text">No, our calculator can only access public YouTube playlists. Private or unlisted playlists require authentication that we don't support.</p>
+                <div class="faq-answer-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p class="info-text" itemprop="text">No, our calculator can only access public YouTube playlists. Private or unlisted playlists require authentication that we don't support.</p>
                 </div>
             </div>
             
-            <div class="faq-item-container">
+            <div class="faq-item-container" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <div class="faq-question-row">
-                    <span>How accurate are the time calculations?</span>
+                    <span itemprop="name">How accurate are the time calculations?</span>
                     <span class="faq-toggle-icon">+</span>
                 </div>
-                <div class="faq-answer-content">
-                    <p class="info-text">Our calculations are based on YouTube's API data and are typically very accurate. However, actual playback times may vary slightly due to internet speed or buffering.</p>
+                <div class="faq-answer-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p class="info-text" itemprop="text">Our calculations are based on YouTube's API data and are typically very accurate. However, actual playback times may vary slightly due to internet speed or buffering.</p>
                 </div>
             </div>
             
-            <div class="faq-item-container">
+            <div class="faq-item-container" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <div class="faq-question-row">
-                    <span>Can I calculate the duration of a channel's entire video collection?</span>
+                    <span itemprop="name">Can I calculate the duration of a channel's entire video collection?</span>
                     <span class="faq-toggle-icon">+</span>
                 </div>
-                <div class="faq-answer-content">
-                    <p class="info-text">This tool only works with specific playlists, not entire channels. You would need to create a playlist containing all the videos you want to calculate.</p>
+                <div class="faq-answer-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p class="info-text" itemprop="text">This tool only works with specific playlists, not entire channels. You would need to create a playlist containing all the videos you want to calculate.</p>
                 </div>
             </div>
             
-            <div class="faq-item-container">
+            <div class="faq-item-container" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <div class="faq-question-row">
-                    <span>Is there a limit to playlist size?</span>
+                    <span itemprop="name">Is there a limit to playlist size?</span>
                     <span class="faq-toggle-icon">+</span>
                 </div>
-                <div class="faq-answer-content">
-                    <p class="info-text">Our tool can handle playlists with up to 500 videos. For larger playlists, consider breaking them into smaller segments.</p>
+                <div class="faq-answer-content" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p class="info-text" itemprop="text">Our tool can handle playlists with up to 500 videos. For larger playlists, consider breaking them into smaller segments.</p>
                 </div>
             </div>
         </section>
         
-        <footer class="page-footer">
-            <p>© <span id="copyright-year"></span> YouTube Playlist Duration Calculator | This tool is not affiliated with YouTube or Google.</p>
+        <!-- Additional SEO Content -->
+        <section class="instructions-section">
+            <h2 class="section-title">Why Use a YouTube Playlist Duration Calculator?</h2>
+            <p class="info-text">Our YouTube playlist time calculator is an essential tool for:</p>
+            <ul class="info-text">
+                <li><strong>Students</strong> - Plan your study sessions by knowing exactly how long your educational playlists will take</li>
+                <li><strong>Content Creators</strong> - Estimate total watch time for your video series or course playlists</li>
+                <li><strong>Music Lovers</strong> - Calculate how long your favorite music playlists will last</li>
+                <li><strong>Productivity Enthusiasts</strong> - Save time by watching at increased speeds while maintaining comprehension</li>
+                <li><strong>Language Learners</strong> - Plan your immersion sessions with accurate time estimates</li>
+            </ul>
+            
+            <h3 class="subsection-title">Understanding YouTube Playback Speeds</h3>
+            <p class="info-text">YouTube allows you to adjust playback speed to watch videos faster or slower. Here's how different speeds affect your watch time:</p>
+            <ul class="info-text">
+                <li><strong>1x (Normal Speed)</strong> - Original video length</li>
+                <li><strong>1.25x Speed</strong> - 20% time savings</li>
+                <li><strong>1.5x Speed</strong> - 33% time savings</li>
+                <li><strong>1.75x Speed</strong> - 43% time savings</li>
+                <li><strong>2x Speed</strong> - 50% time savings</li>
+            </ul>
+        </section>
+        
+        <footer class="page-footer" itemscope itemtype="https://schema.org/WPFooter">
+            <p>© <span id="copyright-year"></span> YouTube Playlist Duration Calculator | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-and-conditions">Terms of Service</a> | <a href="/contact-us">Contact Us</a></p>
+            <p>This tool is not affiliated with YouTube or Google LLC. All trademarks are property of their respective owners.</p>
+            <p><a href="/sitemap.xml">Sitemap</a></p>
         </footer>
     </div>
 
@@ -526,6 +605,7 @@
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
                 this.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+                this.setAttribute('aria-expanded', navMenu.classList.contains('active'));
             });
             
             // Close mobile menu when clicking on a link
@@ -533,6 +613,7 @@
                 link.addEventListener('click', function() {
                     navMenu.classList.remove('active');
                     mobileMenuBtn.innerHTML = '☰';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 });
             });
             
@@ -566,11 +647,19 @@
                     
                     answer.classList.toggle('faq-answer-visible');
                     icon.textContent = answer.classList.contains('faq-answer-visible') ? '−' : '+';
+                    this.setAttribute('aria-expanded', answer.classList.contains('faq-answer-visible'));
                 });
             });
             
             // Calculate button
             document.getElementById('calculate-button').addEventListener('click', processPlaylist);
+            
+            // Allow pressing Enter in input field
+            document.getElementById('playlist-url-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    processPlaylist();
+                }
+            });
             
             async function processPlaylist() {
                 const playlistUrl = document.getElementById('playlist-url-input').value.trim();
@@ -583,7 +672,7 @@
                 // Validate URL format
                 const playlistId = getPlaylistId(playlistUrl);
                 if (!playlistId) {
-                    showErrorMessage('Please enter a valid YouTube playlist URL');
+                    showErrorMessage('Please enter a valid YouTube playlist URL. It should contain "playlist?list=" followed by letters and numbers.');
                     return;
                 }
                 
@@ -607,9 +696,22 @@
                     
                     // Display results
                     showResults(totalSeconds, videoCount);
+                    
+                    // Track successful calculation in analytics
+                    gtag('event', 'calculation', {
+                        'event_category': 'engagement',
+                        'event_label': 'playlist_calculated',
+                        'value': videoCount
+                    });
                 } catch (error) {
                     console.error('Error:', error);
-                    showErrorMessage('Failed to calculate playlist duration. Please check the URL and try again.');
+                    showErrorMessage('Failed to calculate playlist duration. Please check the URL and try again. Make sure the playlist is public.');
+                    
+                    // Track error in analytics
+                    gtag('event', 'exception', {
+                        'description': 'Playlist calculation error',
+                        'fatal': false
+                    });
                 } finally {
                     // Reset button
                     btn.textContent = 'Calculate Duration';
@@ -707,6 +809,12 @@
                 updateSpeedResults(totalSeconds);
                 
                 document.getElementById('results-box').style.display = 'block';
+                
+                // Update meta description dynamically
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.content = `This playlist has ${videoCount} videos with a total duration of ${originalDuration}. Calculate time at different speeds.`;
+                }
             }
             
             function updateSpeedResults(totalSeconds) {
@@ -761,6 +869,12 @@
                 const errorElement = document.getElementById('error-message-box');
                 errorElement.textContent = message;
                 errorElement.style.display = 'block';
+                
+                // Track error in analytics
+                gtag('event', 'exception', {
+                    'description': message,
+                    'fatal': false
+                });
             }
             
             function hideErrorMessage() {
@@ -768,6 +882,7 @@
             }
         });
     </script>
+  
   
   
   <script type='text/javascript'>
